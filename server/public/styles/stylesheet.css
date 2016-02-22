@@ -67,6 +67,22 @@ button, #submit {
     border: 2px dashed #c3c769;
 }
 
+.new-task {
+    border-radius: 5px;
+    border: 1px dotted #d4d879;
+    float: left;
+    width: 45%;
+    margin: 20px 1.2%;
+}
+
+.complete-task {
+    border-radius: 5px;
+    border: 1px dotted #8ca93d;
+    float: left;
+    width: 45%;
+    margin: 20px 1.2%;
+}
+
 #to-do-list li {
     list-style: none;
 }

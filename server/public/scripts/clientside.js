@@ -45,7 +45,9 @@ function appendTask(info) {
         var task = info[i].task;
         var id = info[i].completed;
         if(id == true) {
-            $('#done-list').append('<li>' + task + '</li>');
+            $('#done-list').append('<div class="complete-task"></div>');
+            var $el = $('#done-list').children().last();
+            $el.append('<li>' + task + '</li>');
         } else {
             $('#to-do-list').append('<div class="new-task"></div>');
             var $el = $('#to-do-list').children().last();
