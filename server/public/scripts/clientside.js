@@ -50,7 +50,7 @@ function appendTask(info) {
             $('#to-do-list').append('<div class="new-task"></div>');
             var $el = $('#to-do-list').children().last();
             $el.append('<li id="' + info[i].id + '">' + task + '</li>');
-            $el.append('<button class="complete">Complete!</button>');
+            $el.append('<button class="complete">Done</button>');
             $el.append('<button class="delete">Not To Do!</button>');
         }
     }
@@ -58,13 +58,8 @@ function appendTask(info) {
 
 function completeTask() {
     var id = $(this).siblings('li').attr('id');
-    //var $el = $(this).parent();
-    //var $li = $el.children('li').text();
     var values = {};
-
     values.id = id;
-    //$('#done-list').append('<li>' + $li + '</li>');
-    //$el.remove();
 
     $.ajax({
         type: 'POST',
@@ -82,22 +77,28 @@ function completeTask() {
 }
 
 function deleteTask() {
-    var id = $(this).siblings('li').attr('id');
-    var values = {};
-    values.id = id;
+    $(this).parent().addClass('deleting');
+    var deleteTask = confirm('Are you sure you want to delete this task??');
+    if (deleteTask == true) {
+        var id = $(this).siblings('li').attr('id');
+        var values = {};
+        values.id = id;
 
-    $(this).parent().remove();
+        $(this).parent().remove();
 
-    $.ajax({
-        type: 'POST',
-        url: '/delete',
-        data: values,
-        success: function(data) {
-            if(data) {
-                console.log('from server:', data);
-            } else {
-                console.log('error');
+        $.ajax({
+            type: 'POST',
+            url: '/delete',
+            data: values,
+            success: function(data) {
+                if(data) {
+                    console.log('from server:', data);
+                } else {
+                    console.log('error');
+                }
             }
-        }
-    });
+        });
+    } else {
+        $(this).parent().removeClass('deleting');
+    }
 }

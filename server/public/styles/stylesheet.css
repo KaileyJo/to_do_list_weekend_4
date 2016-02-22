@@ -1,0 +1,82 @@
+h1, form, div, h3, ul, li {
+    margin: 20px;
+    padding: 5px;
+}
+
+body {
+    background-color: #e2f0d7;
+}
+
+li {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+h1, #task-form, div {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Tangerine', cursive;
+}
+
+form {
+    font-family: 'Anton', sans-serif;
+}
+
+button, #submit {
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#task {
+    border-radius: 5px;
+    background-color: #effaec;
+}
+
+#submit {
+    background-color: #f9ffde;
+    border: 2px solid #c3c769;
+}
+
+.complete {
+    background-color: #d4f36b;
+    border: 2px solid #7b982c;
+}
+
+.delete {
+    background-color: #e06063;
+    border: 2px solid #850019;
+}
+
+#to-do, #done {
+    font-family: 'Cinzel', serif;
+    float: left;
+    width: 45%;
+    margin: 20px 1.9%;
+    border-radius: 10px;
+}
+
+#done {
+    background-color: #aecb5f;
+    border: 2px dashed #7b982c;
+}
+
+#to-do {
+    background-color: #F6FA9C;
+    border: 2px dashed #c3c769;
+}
+
+#to-do-list li {
+    list-style: none;
+}
+
+#done-list li {
+    list-style-image: url('http://www.epson.com/alf_upload/images/icons/icon_checkmark_16x16.png');
+}
+
+.deleting {
+    background-color: #ae242b;
+    border-radius: 5px;
+    border: 2px dashed #590007;
+}
