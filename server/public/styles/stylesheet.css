@@ -8,8 +8,8 @@ body {
 }
 
 li {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 h1, #task-form, div {
@@ -27,6 +27,10 @@ form {
 button, #submit {
     border-radius: 5px;
     margin: 5px;
+}
+
+button:hover, #submit:hover {
+    opacity: 0.75;
 }
 
 #task {
@@ -94,5 +98,5 @@ button, #submit {
 .deleting {
     background-color: #ae242b;
     border-radius: 5px;
-    border: 2px dashed #590007;
+    border: 1px dashed #590007;
 }

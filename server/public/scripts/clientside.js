@@ -23,6 +23,8 @@ function postTask() {
         values[field.name] = field.value;
     });
 
+    $('#task-form').find('input[type=text]').val('');
+
     $.ajax({
         type: 'POST',
         url: '/tasks',
