@@ -55,11 +55,13 @@ app.post('/tasks', function(req, res) {
     });
 });
 
-app.post('/completed', function(req, res) {
+app.put('/completed/:id', function(req, res) {
     var task = {
-        taskID: req.body.id,
+        taskID: req.params.id,
         completed: 'TRUE'
     };
+
+    console.log(task);
 
     pg.connect(connectionString, function(err, client, done) {
         client.query("UPDATE tasks SET completed = $1 WHERE id = $2",
@@ -67,7 +69,7 @@ app.post('/completed', function(req, res) {
             function (err, result) {
                 done();
                 if(err) {
-                    console.log("Error inserting data: ", err);
+                    console.log("Error updating data: ", err);
                     res.send(false);
                 } else {
                     res.send(result);
@@ -75,12 +77,11 @@ app.post('/completed', function(req, res) {
             }
         );
     });
-
 });
 
-app.post('/delete', function(req, res) {
+app.delete('/delete/:id', function(req, res) {
     var task = {
-        taskID: req.body.id,
+        taskID: req.params.id
     };
 
     pg.connect(connectionString, function(err, client, done) {
@@ -97,13 +98,13 @@ app.post('/delete', function(req, res) {
             }
         );
     });
-
 });
 
-app.get('/*', function(req, res) {
-    var file = req.params[0] || 'views/index.html';
-    res.sendFile(path.join(__dirname, './server/public/', file));
-});
+app.use(express.static('server/public/'));
+app.use(express.static('server/public/views'));
+app.use(express.static('server/public/vendors'));
+app.use(express.static('server/public/styles'));
+app.use(express.static('server/public/scripts'));
 
 
 app.set('port', process.env.PORT || 5000);

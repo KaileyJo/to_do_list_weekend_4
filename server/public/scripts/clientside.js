@@ -66,9 +66,8 @@ function completeTask() {
     values.id = id;
 
     $.ajax({
-        type: 'POST',
-        url: '/completed',
-        data: values,
+        type: 'PUT',
+        url: '/completed/' + id,
         success: function(data) {
             if(data) {
                 console.log('from server:', data);
@@ -91,8 +90,8 @@ function deleteTask() {
         $(this).parent().remove();
 
         $.ajax({
-            type: 'POST',
-            url: '/delete',
+            type: 'DELETE',
+            url: '/delete/' + id,
             data: values,
             success: function(data) {
                 if(data) {
