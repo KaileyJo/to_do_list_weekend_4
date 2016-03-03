@@ -43,6 +43,11 @@ button:hover, #submit:hover {
     border: 2px solid #c3c769;
 }
 
+.redo {
+    background-color: #dee097;
+    border: 2px solid #c3c769;
+}
+
 .complete {
     background-color: #d4f36b;
     border: 2px solid #7b982c;
