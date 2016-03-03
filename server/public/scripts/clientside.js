@@ -1,9 +1,10 @@
 var myApp = angular.module('myApp', []);
 
-myApp.controller('TaskMaster', ['$scope', 'DataFactory', function($scope, dataFactory) {
+myApp.controller('TaskController', ['$scope', 'dataFactory', function($scope, dataFactory) {
     $scope.dataFactory = dataFactory;
-
-    dataFactory.getTasks();
+    dataFactory.getTasks().then(function() {
+        $scope.tasks = dataFactory.tasksList();
+    });
 
     $scope.submitTask = function() {
         var newTask = {

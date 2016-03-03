@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <title>To Do App</title>
     <script type="text/javascript" src="/vendors/angular.min.js"></script>
-    <script type="text/javascript" src="/vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="/scripts/clientside.js"></script>
+    <script type="text/javascript" src="/scripts/factories/dataFactory.js"></script>
+
     <link rel="stylesheet" href="/vendors/normalize.css" />
     <link href='https://fonts.googleapis.com/css?family=Tangerine:700|Cinzel|Anton' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/styles/stylesheet.css" />
 </head>
-<body>
+<body ng-app="myApp">
+<div ng-controller="TaskController">
     <h1>To Do or Not To Do!</h1>
     <form id="task-form">
         <label for="task">Task: </label>
@@ -20,20 +22,25 @@
     <div>
         <div id="to-do">
             <h2>To Do:</h2>
-            <ul id="to-do-list" ng-repeat="task in tasks">
-                <li ng-if="task.completed != true">{{task.task}}</li>
-                <button ng-click="complete(task._id)" class="btn btn-default">Complete</button>
-                <button ng-click="delete(task._id)" class="btn btn-danger">Delete</button>
-            </ul>
+            <div ng-repeat="task in tasks">
+                <ul ng-if="task.completed != true" id="to-do-list">
+                    <li>{{task.task}}
+                    <button ng-click="complete(task._id)" class="btn btn-default">Complete</button>
+                    <button ng-click="delete(task._id)" class="btn btn-danger">Delete</button></li>
+                </ul>
+            </div>
         </div>
         <div id="done">
             <h2>Done.</h2>
-            <ul id="done-list" ng-repeat="task in tasks">
-                <li ng-if="task.completed == true">{{task.task}}</li>
-                <button ng-click="redo(task._id)" class="btn btn-default">Redo</button>
-                <button ng-click="delete(task._id)" class="btn btn-danger">Delete</button>
-            </ul>
+            <div ng-repeat="task in tasks">
+                <ul ng-if="task.completed == true" id="done-list">
+                    <li>{{task.task}}
+                    <button ng-click="redo(task._id)" class="btn btn-default">Redo</button>
+                    <button ng-click="delete(task._id)" class="btn btn-danger">Delete</button></li>
+                </ul>
+            </div>
         </div>
     </div>
+</div>
 </body>
 </html>

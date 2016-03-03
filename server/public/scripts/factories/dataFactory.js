@@ -1,7 +1,11 @@
-myApp.factory('DataFactory', ['$http', function($http) {
+myApp.factory('dataFactory', ['$http', function($http) {
+    var taskList = undefined;
+
     var getData = function() {
-        var promise = $http.get('/tasks', tasks).then(function(response) {
-            return response.data;
+        console.log('Getting Data');
+        var promise = $http.get('/tasks').then(function(response) {
+            taskList = response.data;
+            console.log('Async data response', taskList);
         });
         return promise;
     };
@@ -39,6 +43,11 @@ myApp.factory('DataFactory', ['$http', function($http) {
         },
         deleteTask: function(id) {
             deleteData(id);
+        },
+        tasksList: function() {
+            return taskList;
         }
-    }
+    };
+
+    return publicApi;
 }]);

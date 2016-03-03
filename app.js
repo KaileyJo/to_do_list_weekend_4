@@ -52,7 +52,7 @@ app.post('/tasks', function(req, res) {
     });
 });
 
-app.put('/completed/:id', function(req, res) {
+app.put('/tasks/:id', function(req, res) {
     Task.findByIdAndUpdate(
         {_id: req.params.id},
         {$set: {completed: true}},
@@ -65,7 +65,7 @@ app.put('/completed/:id', function(req, res) {
     );
 });
 
-app.delete('/delete/:id', function(req, res) {
+app.delete('/tasks/:id', function(req, res) {
     Task.findByIdAndRemove({_id: req.params.id}, function(err, data) {
         if(err) {
             console.log(err);
