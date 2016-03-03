@@ -2,8 +2,11 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('TaskController', ['$scope', 'dataFactory', function($scope, dataFactory) {
     $scope.dataFactory = dataFactory;
+    $scope.taskItem = '';
+
     dataFactory.getTasks().then(function() {
         $scope.tasks = dataFactory.tasksList();
+
     });
 
     $scope.submitTask = function() {
@@ -23,6 +26,9 @@ myApp.controller('TaskController', ['$scope', 'dataFactory', function($scope, da
         var deleteTask = confirm('Are you sure you want to delete this task??');
         if (deleteTask == true) {
             dataFactory.deleteTask(id);
+            //dataFactory.deleteTask(id).then(function() {
+            //    $scope.tasks = dataFactory.tasksList();
+            //});
         }
     };
 }]);

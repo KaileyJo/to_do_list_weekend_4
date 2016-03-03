@@ -42,7 +42,7 @@ myApp.factory('dataFactory', ['$http', function($http) {
             return updateData(id);
         },
         deleteTask: function(id) {
-            deleteData(id);
+            return deleteData(id);
         },
         tasksList: function() {
             return taskList;

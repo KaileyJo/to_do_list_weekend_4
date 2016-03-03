@@ -33,17 +33,17 @@ app.get('/tasks', function(req, res) {
 });
 
 app.post('/tasks', function(req, res) {
-    var addTask = {
+    var addTask = new Task({
         "task": req.body.task,
-        "completed": false
-    };
+        "completed": req.body.completed
+    });
 
     addTask.save(function(err, data) {
         if(err) {
-            console.log(err);
+            console.log('ERR::', err);
         }
 
-        Tasks.find({}, function(err, data) {
+        Task.find({}, function(err, data) {
             if(err) {
                 console.log(err);
             }
