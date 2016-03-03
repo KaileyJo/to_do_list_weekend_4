@@ -52,10 +52,23 @@ app.post('/tasks', function(req, res) {
     });
 });
 
-app.put('/tasks/:id', function(req, res) {
+app.put('/tasks/done/:id', function(req, res) {
     Task.findByIdAndUpdate(
         {_id: req.params.id},
         {$set: {completed: true}},
+        function(err, data) {
+            if(err) {
+                console.log('Err::', err);
+            }
+            res.send(data);
+        }
+    );
+});
+
+app.put('/tasks/redo/:id', function(req, res) {
+    Task.findByIdAndUpdate(
+        {_id: req.params.id},
+        {$set: {completed: false}},
         function(err, data) {
             if(err) {
                 console.log('Err::', err);

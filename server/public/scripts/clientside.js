@@ -4,10 +4,13 @@ myApp.controller('TaskController', ['$scope', 'dataFactory', function($scope, da
     $scope.dataFactory = dataFactory;
     $scope.taskItem = '';
 
-    dataFactory.getTasks().then(function() {
-        $scope.tasks = dataFactory.tasksList();
+    var getAllTasks = function() {
+        dataFactory.getTasks().then(function() {
+            $scope.tasks = dataFactory.tasksList();
 
-    });
+        });
+    };
+
 
     $scope.submitTask = function() {
         var newTask = {
@@ -15,20 +18,31 @@ myApp.controller('TaskController', ['$scope', 'dataFactory', function($scope, da
             completed: false
         };
 
-        dataFactory.postTask(newTask);
+        dataFactory.postTask(newTask).then(function() {
+            getAllTasks();
+        });
     };
 
     $scope.complete = function(id) {
-        dataFactory.updateTask(id);
+        dataFactory.updateTask(id).then(function() {
+            getAllTasks();
+        });
+    };
+
+    $scope.redo = function(id) {
+        dataFactory.redoTask(id).then(function() {
+            getAllTasks();
+        });
     };
 
     $scope.delete = function(id) {
         var deleteTask = confirm('Are you sure you want to delete this task??');
         if (deleteTask == true) {
-            dataFactory.deleteTask(id);
-            //dataFactory.deleteTask(id).then(function() {
-            //    $scope.tasks = dataFactory.tasksList();
-            //});
+            dataFactory.deleteTask(id).then(function() {
+                getAllTasks();
+            });
         }
     };
+
+    getAllTasks();
 }]);

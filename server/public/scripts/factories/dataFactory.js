@@ -11,24 +11,23 @@ myApp.factory('dataFactory', ['$http', function($http) {
     };
 
     var postData = function(task) {
-        var promise = $http.post('/tasks', task).then(function(response) {
-            getData();
-            return response.data;
-        });
+        var promise = $http.post('/tasks', task).then(function(response) {});
         return promise;
     };
 
     var updateData = function(id) {
-        var promise = $http.put('/tasks/' + id).then(function(response) {
-            getData();
-        });
+        var promise = $http.put('/tasks/done/' + id).then(function(response) {});
+        return promise;
+    };
+
+    var redoData = function(id) {
+        var promise = $http.put('/tasks/redo/' + id).then(function(response) {});
         return promise;
     };
 
     var deleteData = function(id) {
-        $http.delete('/tasks/' + id).then(function(response) {
-            getData();
-        });
+        var promise = $http.delete('/tasks/' + id).then(function(response) {});
+        return promise;
     };
 
     var publicApi = {
@@ -40,6 +39,9 @@ myApp.factory('dataFactory', ['$http', function($http) {
         },
         updateTask: function(id) {
             return updateData(id);
+        },
+        redoTask: function(id) {
+            return redoData(id)
         },
         deleteTask: function(id) {
             return deleteData(id);
