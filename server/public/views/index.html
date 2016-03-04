@@ -22,23 +22,19 @@
     <div>
         <div id="to-do">
             <h2>To Do:</h2>
-            <div ng-repeat="task in tasks">
-                <ul ng-if="task.completed != true" id="to-do-list">
+                <ul ng-repeat="task in tasks" ng-if="task.completed != true" id="to-do-list">
                     <li>{{task.task}}</li>
                     <button ng-click="complete(task._id)" class="btn btn-default complete">Complete</button>
                     <button ng-click="delete(task._id)" class="btn btn-danger delete">Delete</button>
                 </ul>
-            </div>
         </div>
         <div id="done">
             <h2>Done.</h2>
-            <div ng-repeat="task in tasks">
-                <ul ng-if="task.completed == true" id="done-list">
+                <ul ng-repeat="task in tasks" ng-if="task.completed == true" id="done-list">
                     <li>{{task.task}}</li>
                     <button ng-click="redo(task._id)" class="btn btn-default redo">Redo</button>
                     <button ng-click="delete(task._id)" class="btn btn-danger delete">Delete</button>
                 </ul>
-            </div>
         </div>
     </div>
 </div>
